@@ -5,7 +5,7 @@ import numpy as np
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
-
+    # Getting the user input
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
@@ -21,12 +21,12 @@ def get_filters():
 
     # TO DO: get user input for month (all, january, february, ... , june)
     month = input('What is the month, or type "all" for all the months?').lower()
-    # If the user inputs a numeric value, it gets converted to the name of the month 
+    # If the user inputs a numeric value, it gets converted to the name of the month
     int_months = {
         '1':'january', '2':'Febuary', '3':'march', '4':'april', '5':'may', '6':'june'}
     if month in int_months:
         month = int_months[month]
-        
+
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     day = input('What is the day of week? or type "all" for all the days of the week?').lower()
     print('-'*40)
@@ -45,17 +45,17 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
-   
+
     df = pd.read_csv(CITY_DATA[city])
     df['Start Time'] = pd.to_datetime(df['Start Time'])
     df['month']= df['Start Time'].dt.month
     df['day'] = df['Start Time'].dt.weekday_name
-    
+
     if month != 'all':
         months_list = ['januar', 'febuary', 'march', 'april','may','june','july','augest','september','october','november','december']
         month = months_list.index(month) + 1
         df = df[df['month'] == month]
-        
+
     if day != 'all':
         df = df[df['day'] == day.title()]
 
@@ -100,7 +100,7 @@ def station_stats(df):
     most_com_comb_stations = (df['Start Station'] + ' and ' + df['End Station']).mode()[0]
     print(most_com_comb_stations)
     print('The most common combination of start station and end station trip is ', most_com_comb_stations)
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -130,12 +130,12 @@ def user_stats(df):
     start_time = time.time()
 
     # TO DO: Display counts of user types
-    counts_of_user_type = df['User Type'].value_counts() 
+    counts_of_user_type = df['User Type'].value_counts()
     print('There are {} {} and {} {} '.format(counts_of_user_type[0],counts_of_user_type.index[0],counts_of_user_type[1],counts_of_user_type.index[1]))
 
     # TO DO: Display counts of gender
     try:
-        counts_of_user_gender = df['Gender'].value_counts() 
+        counts_of_user_gender = df['Gender'].value_counts()
         print('There are {} {} users and {} {} users'.format(counts_of_user_gender[0],counts_of_user_gender.index[0],counts_of_user_gender[1],counts_of_user_gender.index[1] ))
     except:
         print('There is no data about gender for this city')
@@ -170,7 +170,7 @@ def main():
         trip_duration_stats(df)
         user_stats(df)
         display_raw_data(df)
-        
+
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
