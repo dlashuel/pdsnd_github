@@ -150,6 +150,7 @@ def user_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
+    # TO DO: Display 5 lines of the row data
 def display_raw_data(df):
     while True:
         raw_data= input('Would you like to see 5 lines of the raw data? Enter yes or no.\n').lower()
