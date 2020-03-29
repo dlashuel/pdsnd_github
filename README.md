@@ -15,3 +15,6 @@ washington.csv
 
 ### Credits
 I would like to thank my mentor and the Udacity community who supported me through out the duration of this project.
+
+### Future updates
+The project will be updated in the future to allow for more options in exploring the data.
